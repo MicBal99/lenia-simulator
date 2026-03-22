@@ -236,10 +236,8 @@ export default function App() {
   };
 
   useEffect(() => {
-    let lastTime = performance.now();
-    const loop = (time: number) => {
+    const loop = () => {
       if (isPlaying) {
-        // Run multiple steps per frame for smoother/faster visual evolution
         step();
         step();
       }
@@ -266,7 +264,6 @@ export default function App() {
       clientY = (e as React.MouseEvent).clientY;
     }
     
-    // Since aspect ratio matches the screen perfectly now, we don't need complex offset calculations
     const x = ((clientX - rect.left) / rect.width) * W;
     const y = ((clientY - rect.top) / rect.height) * H;
     
@@ -275,7 +272,7 @@ export default function App() {
 
   const applyBrush = (cx: number, cy: number) => {
     const grid = gridRef.current;
-    const radius = Math.max(2, Math.floor(R / 3)); // Smaller brush size for more precision
+    const radius = Math.max(2, Math.floor(R / 3));
     let changed = false;
     
     for (let dy = -radius; dy <= radius; dy++) {
@@ -286,10 +283,8 @@ export default function App() {
           let idx = gy * W + gx;
           
           if (activeTool === 'draw') {
-            // Injecting noise creates the "primordial soup" that instantly forms cells
             grid[idx] = Math.random();
           } else {
-            // Eraser
             grid[idx] = 0;
           }
           changed = true;
@@ -322,7 +317,6 @@ export default function App() {
 
   return (
     <div className="w-screen h-screen bg-black flex items-center justify-center overflow-hidden relative select-none">
-      {/* Main Canvas Container - Full Screen */}
       <div className="absolute inset-0 w-full h-full bg-black">
         <canvas
           ref={canvasRef}
@@ -330,7 +324,6 @@ export default function App() {
           height={H}
           className="w-full h-full object-cover cursor-crosshair touch-none"
           style={{
-            // Gooey/Sharpen filter: blurs the pixels then massively increases contrast to create sharp, organic vector-like edges
             filter: 'blur(2px) contrast(400%) saturate(150%) brightness(110%)',
             backgroundColor: 'black'
           }}
@@ -344,7 +337,6 @@ export default function App() {
         />
       </div>
 
-      {/* Floating Minimalist Toolbar - Vertical on the right for mobile usability */}
       <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-slate-900/80 backdrop-blur-xl p-2 rounded-2xl border border-slate-700/50 shadow-2xl flex flex-col items-center gap-2 z-10">
         <button
           onClick={() => setIsPlaying(!isPlaying)}
