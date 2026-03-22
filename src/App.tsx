@@ -272,7 +272,7 @@ export default function App() {
 
   const applyBrush = (cx: number, cy: number) => {
     const grid = gridRef.current;
-    const radius = Math.max(2, Math.floor(R / 3));
+    const radius = Math.max(3, Math.floor(R / 2));
     let changed = false;
     
     for (let dy = -radius; dy <= radius; dy++) {
