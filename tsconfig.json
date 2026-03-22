@@ -1,20 +1,30 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Lenia Simulator
 
-# Run and deploy your AI Studio app
+Prosty symulator Lenia zbudowany w React + Vite.
 
-This contains everything you need to run your app locally.
+## Uruchomienie lokalnie
 
-View your app in AI Studio: https://ai.studio/apps/2e52e55a-a6c4-4c7f-88f6-780578c68e30
+```bash
+npm install
+npm run dev
+```
 
-## Run Locally
+## Build produkcyjny
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run build
+```
 
+Po buildzie gotowe pliki statyczne znajdziesz w folderze `dist`.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Deploy na Cloudflare Pages
+
+Ustaw w Cloudflare Pages:
+
+- **Framework preset:** Vite
+- **Build command:** `npm run build`
+- **Build output directory:** `dist`
+- **Root directory:** *(puste)*
+
+Repozytorium nie wymaga backendu ani zmiennych środowiskowych.
