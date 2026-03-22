@@ -1,0 +1,5 @@
+{
+  "name": "Lenia Simulator",
+  "description": "A continuous version of Conway's Game of Life, simulating complex life-like autonomous patterns.",
+  "requestFramePermissions": []
+}
